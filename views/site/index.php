@@ -1,6 +1,9 @@
 <?php
 //доступ только зарегистрированным пользователям
 /* @var $this yii\web\View */
+
+use yii\bootstrap\ActiveForm;
+
 $user = $model->attributes;
 $this->title = 'Профиль';
 // echo 'id пользователя - '.Yii::$app->user->id;
@@ -66,7 +69,7 @@ $this->title = 'Профиль';
      </div>
      <div class="panel-body">
       <div class="text-center" id="author">
-       <img src="http://bootstraptema.ru/snippets/element/2016/profilesection/myprofile.jpg">
+       <img width="300" height="300" src="/uploads/<?= $user['id']?>.png">
        <h3>
            <?php //foreach ($model as $var):
 
@@ -76,6 +79,7 @@ $this->title = 'Профиль';
        </h3>
        <small class="label label-warning">Российская Федерация</small>
        <p>Тут статус пользователя</p>
+
 <!--       <p class="sosmed-author">-->
 <!--        <a href="#"><i class="fa fa-facebook" title="Facebook"></i></a>-->
 <!--        <a href="#"><i class="fa fa-twitter" title="Twitter"></i></a>-->
@@ -114,6 +118,7 @@ $this->title = 'Профиль';
          <tr><td class="active">Возраст:</td><td>43</td></tr>
 <!--         <tr><td class="active">Семейное положение:</td><td>Женат</td></tr>-->
          <tr><td class="active">Рейтинг:</td><td><i class="fa fa-star" style="color:red"></i> <i class="fa fa-star" style="color:red"></i> <i class="fa fa-star" style="color:red"></i> <i class="fa fa-star" style="color:red"></i> 4/5</td></tr>
+         <tr><td class="active">О себе:</td><td>фывфывфывфыв фывфывфывфывфы фывфывфыв фывфывфывфыв фывфывф ы фывфы фыв фыв</td></tr>
 <!--         <tr><td class="active">Плагин рейтинга:</td><td><a href="http://bootstraptema.ru/stuff/plugins_bootstrap/improvement/bootstrap_star_rating/12-1-0-73" target="_blank">http://goo.gl/bGGXuw</a></td></tr>-->
          </tbody>
         </table>
@@ -154,6 +159,24 @@ $this->title = 'Профиль';
      </div>
     </div>
    </div>
+      <div class="col-lg-8 col-md-8 col-xs-12">
+          <div class="panel">
+              <div class="panel-body">
+                  <form role="form">
+                      <div class="form-group">
+                          <input name="name" type="text"  class="form-control" placeholder="Тема"/>
+                      </div>
+                      <div class="form-group">
+                          <textarea name="comment" class="form-control" placeholder="Сделать запись в дневник"></textarea>
+                      </div>
+                      <div class="form-group">
+                          <input type="submit" class="btn btn-info" value="Отправить" />
+                      </div>
+                  </form>
+                  <?= \sintret\chat\ChatRoom::widget(['url'=>  \yii\helpers\Url::to(['/chat/send-chat'])]); ?>;<pre class="lang:php decode:true">
+      </div>
+      </div>
+      </div>
   </div>
  </div>
 

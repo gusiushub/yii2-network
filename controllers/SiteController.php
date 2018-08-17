@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
 use app\models\SignupForm;
+use app\models\UploadImage;
 use app\models\User;
 use Yii;
 use yii\base\InvalidParamException;
@@ -15,6 +16,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\web\UploadedFile;
 
 class SiteController extends Controller
 {
@@ -67,6 +69,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+//        $modelImage = new UploadImage();
+//        if(Yii::$app->request->isPost){
+//            $modelImage->image = UploadedFile::getInstance($modelImage, 'image');
+//            $modelImage->upload();
+//            return;
+//        }
         $model = new User();
         $model = $model->findIdentity(Yii::$app->user->id);
         return $this->render('index', [
@@ -200,5 +208,22 @@ class SiteController extends Controller
             'model' => $model,
             ]);
       }
+
+
+    public function actionUpload(){
+        $model = new UploadImage();
+        if(Yii::$app->request->isPost){
+            $model->image = UploadedFile::getInstance($model, 'image');
+            $model->upload();
+            return $this->render('upload', ['model' => $model]);
+        }
+        return $this->render('upload', ['model' => $model]);
+    }
+
+//    public function actionSendChat() {
+//        if (!empty($_POST)) {
+//            echo \sintret\chat\ChatRoom::sendChat($_POST);
+//        }
+//    }
 
 }
